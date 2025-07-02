@@ -1,0 +1,9 @@
+# templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "php-hello-world.fullname" . }}-html
+data:
+  index.php: |
+    <?php
+    echo "Hello World";

@@ -1,0 +1,28 @@
+# templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "php-hello-world.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "php-hello-world.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "php-hello-world.name" . }}
+    spec:
+      containers:
+        - name: php
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: [ "php", "-S", "0.0.0.0:8080", "-t", "/var/www/html" ]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: www
+              mountPath: /var/www/html
+      volumes:
+        - name: www
+          configMap:
+            name: {{ include "php-hello-world.fullname" . }}-html

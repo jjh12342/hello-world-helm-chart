@@ -1,0 +1,8 @@
+# values.yaml
+image:
+  repository: arm64v8/php
+  tag: "8.2-cli-alpine"
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 8080

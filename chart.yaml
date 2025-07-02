@@ -1,0 +1,4 @@
+# Chart.yaml
+apiVersion: v2
+name: php-hello-world
+version: 0.1.0
